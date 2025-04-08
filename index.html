@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+    #map {
+      height: 100vh;
+      width: 100vw;
+    }
+    .leaflet-marker-icon.bounce {
+      animation: bounce 0.5s ease;
+    }
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      30% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const map = L.map("map", {
+        crs: L.CRS.Simple,
+        minZoom: -2,
+        maxZoom: 2,
+        zoomControl: true
+      });
+
+      const imageWidth = 4000;
+      const imageHeight = 4000;
+      const imageBounds = [[0, 0], [imageHeight, imageWidth]];
+
+      const mapImageURL = "https://static.wixstatic.com/media/5848e1_91abe60b798d4e869f1fd1e60d4d5dca~mv2.jpg";
+      L.imageOverlay(mapImageURL, imageBounds).addTo(map);
+      map.fitBounds(imageBounds);
+
+      const locations = [
+        {
+          name: "THE ARCHIVE OF SONIC HISTORY",
+          coords: [3480, 3200],
+          url: "/the-archive-of-sonic-history.html",
+        },
+        {
+          name: "FANCLB",
+          coords: [2820, 1600],
+          url: "/fanclb.html",
+        },
+        {
+          name: "EYEAMKI EATERY",
+          coords: [3700, 900],
+          url: "/eyeamki-eatery.html",
+        },
+        {
+          name: "KITV",
+          coords: [2400, 500],
+          url: "/kitv.html",
+        },
+        {
+          name: "EYEAMKIND",
+          coords: [1480, 2200],
+          url: "/eyeamkind.html",
+        },
+        {
+          name: "CLOAKS OF KI",
+          coords: [1480, 3200],
+          url: "/cloaks-of-ki.html",
+        },
+        {
+          name: "EVENING ENTERTAINMENT",
+          coords: [480, 3200],
+          url: "/evening-entertainment.html",
+        },
+        {
+          name: "THE HOPE EMBASSY",
+          coords: [200, 1800],
